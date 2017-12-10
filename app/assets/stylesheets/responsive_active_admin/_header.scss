@@ -3,7 +3,7 @@
     box-sizing: border-box;
 
     display: block;
-    height:  auto;
+    height: auto;
 
     padding: 10px 22px;
   }
@@ -14,9 +14,47 @@
     }
   }
 
-  ul.tabs {
+  #toggle-mobile-menu {
+    display: none;
+  }
+
+  #toggle-mobile-menu-label {
+    position: absolute;
+    right: 1.5em;
+    top: 1em;
+    width: 1.25em;
+    height: 0.8em;
+    margin-right: 0.3em;
+    border-top: 0.2em solid #fff;
+    border-bottom: 0.2em solid #fff;
+    display: none;
+  }
+
+  #toggle-mobile-menu-label:before {
+
+    content: "";
+    position: absolute;
+    top: 0.3em;
+    left: 0px;
+    width: 100%;
+    border-top: 0.2em solid #fff;
+  }
+
+  #toggle-mobile-menu-label {
     @include responsive {
+      display: inline-block;
+    }
+  }
+
+  ul.tabs {
+    transition: all 250ms;
+
+    @include responsive {
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s, opacity 0.5s ease-out;
       display: block;
+      height: 0;
     }
 
     & > li {
@@ -25,12 +63,18 @@
       }
     }
   }
+  #toggle-mobile-menu:checked ~ ul.tabs {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+    height: auto;
+  }
 
   #utility_nav {
     @include responsive {
       display: block;
 
-      margin-top:  5px;
+      margin-top: 5px;
       padding-top: 5px;
 
       border-top: #444 1px solid;
